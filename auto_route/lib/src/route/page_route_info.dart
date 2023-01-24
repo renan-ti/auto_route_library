@@ -183,6 +183,7 @@ class PageRouteInfo<T> {
       identical(this, other) ||
       other is PageRouteInfo &&
           _name == other._name &&
+          args == other.args &&
           fragment == other.fragment &&
           const ListEquality().equals(initialChildren, other.initialChildren) &&
           const MapEquality().equals(rawPathParams, other.rawPathParams) &&
@@ -191,6 +192,7 @@ class PageRouteInfo<T> {
   @override
   int get hashCode =>
       _name.hashCode ^
+      args.hashCode ^
       fragment.hashCode ^
       const MapEquality().hash(rawPathParams) ^
       const MapEquality().hash(rawQueryParams) ^
