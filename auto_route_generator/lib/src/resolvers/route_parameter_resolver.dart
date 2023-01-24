@@ -16,6 +16,7 @@ class RouteParameterResolver {
 
   ParamConfig resolve(ParameterElement parameterElement) {
     final paramType = parameterElement.type;
+    final isPossibleDartCollection = paramType.isPossiblyDartCollection;
     if (paramType is FunctionType) {
       return _resolveFunctionType(parameterElement);
     }
@@ -67,6 +68,7 @@ class RouteParameterResolver {
       isInheritedPathParam: isInheritedPathParam,
       isQueryParam: queryParamAnnotation != null,
       defaultValueCode: parameterElement.defaultValueCode,
+      isPossibleDartCollection: isPossibleDartCollection,
     );
   }
 
@@ -98,5 +100,37 @@ class RouteParameterResolver {
         isOptional: isOptional,
       );
     }).toList();
+  }
+}
+
+extension IsDartCollection on DartType {
+  /// Whether this type can potentially contain a [List], [Map], [Set] or [Iterable].
+  ///
+  /// This includes types such as [dynamic], [Object] and generics
+  bool get isPossiblyDartCollection {
+    final interface = safeCast<InterfaceType>();
+
+    return _isDartCollectionType ||
+        isDynamic ||
+        isDartCoreObject ||
+        this is TypeParameterType ||
+        (interface != null &&
+            interface.allSupertypes.any((e) => e._isDartCollectionType));
+  }
+
+  /// Whether this type is a [List], [Map], [Set] or [Iterable].
+  bool get _isDartCollectionType {
+    return isDartCoreMap ||
+        isDartCoreIterable ||
+        isDartCoreSet ||
+        isDartCoreList;
+  }
+}
+
+extension on Object? {
+  T? safeCast<T>() {
+    final that = this;
+    if (that is T) return that;
+    return null;
   }
 }

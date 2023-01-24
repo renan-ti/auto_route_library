@@ -29,6 +29,7 @@ class ParamConfig {
   final bool isInheritedPathParam;
   final bool isQueryParam;
   final String? defaultValueCode;
+  final bool isPossibleDartCollection;
 
   ParamConfig({
     required this.type,
@@ -41,6 +42,7 @@ class ParamConfig {
     required this.isPathParam,
     required this.isQueryParam,
     required this.isInheritedPathParam,
+    required this.isPossibleDartCollection,
     this.alias,
     this.defaultValueCode,
   });
@@ -134,6 +136,7 @@ class FunctionParamConfig extends ParamConfig {
           isPathParam: false,
           isQueryParam: false,
           isInheritedPathParam: false,
+          isPossibleDartCollection: false,
           isNamed: isNamed,
           defaultValueCode: defaultValueCode,
           isPositional: isPositional,

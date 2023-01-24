@@ -1,3 +1,4 @@
+import 'package:auto_route_generator/src/code_builder/route_info_builder.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
@@ -12,8 +13,12 @@ import 'package:path/path.dart' as p;
 const autoRouteImport = 'package:auto_route/auto_route.dart';
 const materialImport = 'package:flutter/material.dart';
 const foundationImport = 'package:flutter/foundation.dart';
+const collectionImport = 'package:collection/collection.dart';
 
+const Reference boolRefer = Reference('bool');
 const Reference stringRefer = Reference('String');
+const Reference intRefer = Reference('int');
+const Reference dynamicRefer = Reference('dynamic');
 const Reference pageRouteType = Reference('PageRouteInfo', autoRouteImport);
 const Reference requiredAnnotation = Reference('required', materialImport);
 
