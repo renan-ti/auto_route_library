@@ -24,6 +24,28 @@ void main() {
     );
   });
 
+  test("PageRouteInfo equality test fails with different args", () {
+    expect(
+      const PageRouteInfo(
+            'Name',
+            rawPathParams: {'foo': 'baz'},
+            rawQueryParams: {'foo': 'bar'},
+            args: 'Args',
+            initialChildren: [
+              PageRouteInfo('sub'),
+            ],
+          ) !=
+          const PageRouteInfo(
+            'Name',
+            rawPathParams: {'foo': 'baz'},
+            rawQueryParams: {'foo': 'bar'},
+            args: 'DifferentArgs',
+            initialChildren: [PageRouteInfo('sub')],
+          ),
+      true,
+    );
+  });
+
   test(
       "Calling PageRouteInfo.fromRedirect on an redirected instance should return true",
       () {
