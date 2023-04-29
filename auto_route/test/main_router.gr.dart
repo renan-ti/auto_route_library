@@ -187,6 +187,19 @@ class SecondHostRouteArgs {
   String toString() {
     return 'SecondHostRouteArgs{key: $key, useCustomLeading: $useCustomLeading, hasDrawer: $hasDrawer}';
   }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SecondHostRouteArgs &&
+            this.key == other.key &&
+            this.useCustomLeading == other.useCustomLeading &&
+            this.hasDrawer == other.hasDrawer);
+  }
+
+  @override
+  int get hashCode => Object.hashAll(
+      [key.hashCode, useCustomLeading.hashCode, hasDrawer.hashCode]);
 }
 
 /// generated route for
@@ -436,6 +449,17 @@ class TabsHostRouteArgs {
   String toString() {
     return 'TabsHostRouteArgs{key: $key, tabsType: $tabsType}';
   }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TabsHostRouteArgs &&
+            this.key == other.key &&
+            this.tabsType == other.tabsType);
+  }
+
+  @override
+  int get hashCode => Object.hashAll([key.hashCode, tabsType.hashCode]);
 }
 
 /// generated route for
@@ -475,4 +499,15 @@ class DeclarativeRouterHostRouteArgs {
   String toString() {
     return 'DeclarativeRouterHostRouteArgs{key: $key, pageNotifier: $pageNotifier}';
   }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeclarativeRouterHostRouteArgs &&
+            this.key == other.key &&
+            this.pageNotifier == other.pageNotifier);
+  }
+
+  @override
+  int get hashCode => Object.hashAll([key.hashCode, pageNotifier.hashCode]);
 }

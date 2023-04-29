@@ -88,6 +88,7 @@ class ParamConfig {
       'isInheritedPathParam': this.isInheritedPathParam,
       'isQueryParam': this.isQueryParam,
       'defaultValueCode': this.defaultValueCode,
+      'isPossibleDartCollection': this.isPossibleDartCollection,
     };
   }
 
@@ -109,6 +110,7 @@ class ParamConfig {
       isInheritedPathParam: map['isInheritedPathParam'] as bool,
       isQueryParam: map['isQueryParam'] as bool,
       defaultValueCode: map['defaultValueCode'] as String?,
+      isPossibleDartCollection: map['isPossibleDartCollection'] as bool,
     );
   }
 }

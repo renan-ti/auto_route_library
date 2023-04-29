@@ -155,7 +155,7 @@ List<Class> buildRouteInfoAndArgs(
                 ..annotations.add(refer('override'))
                 ..returns = boolRefer
                 ..body = refer(
-                        'identical(this, other) || (other is ${r.routeName}Args && ${parameters.map(
+                        'identical(this, other) || (other is ${r.getName(router.replaceInRouteName)}Args && ${parameters.map(
                   (p) {
                     if (p.isPossibleDartCollection) {
                       return 'const ${refer('DeepCollectionEquality', collectionImport).accept(emitter).toString()}().equals(this.${p.name}, other.${p.name})';
