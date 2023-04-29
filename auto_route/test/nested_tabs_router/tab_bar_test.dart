@@ -7,9 +7,11 @@ import '../main_router.dart';
 import '../router_test_utils.dart';
 import 'router.dart';
 import 'tabs_router_tests.dart';
+import 'tabs_with_param_router_tests.dart';
 
 void main() {
   runGeneralTests('TabBar');
+  runTabsWithParamTests('TabBar');
   late NestedTabsRouter router;
   setUp(() => router = NestedTabsRouter());
 

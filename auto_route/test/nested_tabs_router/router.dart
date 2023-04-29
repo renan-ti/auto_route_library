@@ -26,3 +26,16 @@ final tabRoutes = [
         AutoRoute(path: 'tab3Nested2', page: Tab3Nested2Route.page),
       ]),
 ];
+
+class NestedTabsWithParamRouter extends MainRouter {
+  @override
+  final List<AutoRoute> routes = [
+    AutoRoute(path: '/', page: TabsWithParamHostRoute.page, children: [
+      AutoRoute(
+        path: 'tabWithParam/:param',
+        page: TabWithParamRoute.page,
+      ),
+    ]),
+    RedirectRoute(path: '*', redirectTo: '/'),
+  ];
+}

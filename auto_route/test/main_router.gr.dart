@@ -133,6 +133,32 @@ abstract class _$MainRouter extends RootStackRouter {
         ),
       );
     },
+    TabWithParamRoute.name: (routeData) {
+      final args = routeData.argsAs<TabWithParamRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TabWithParamPage(
+          key: args.key,
+          param: args.param,
+        ),
+      );
+    },
+    TabsWithParamHostRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<TabsWithParamHostRouteArgs>(
+          orElse: () => TabsWithParamHostRouteArgs(
+                  tabsType: queryParams.getString(
+                'tabsType',
+                'IndexedStack',
+              )));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TabsWithParamHostPage(
+          key: args.key,
+          tabsType: args.tabsType,
+        ),
+      );
+    },
     DeclarativeRouterHostRoute.name: (routeData) {
       final args = routeData.argsAs<DeclarativeRouterHostRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -454,6 +480,105 @@ class TabsHostRouteArgs {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is TabsHostRouteArgs &&
+            this.key == other.key &&
+            this.tabsType == other.tabsType);
+  }
+
+  @override
+  int get hashCode => Object.hashAll([key.hashCode, tabsType.hashCode]);
+}
+
+/// generated route for
+/// [TabWithParamPage]
+class TabWithParamRoute extends PageRouteInfo<TabWithParamRouteArgs> {
+  TabWithParamRoute({
+    Key? key,
+    required String param,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TabWithParamRoute.name,
+          args: TabWithParamRouteArgs(
+            key: key,
+            param: param,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TabWithParamRoute';
+
+  static const PageInfo<TabWithParamRouteArgs> page =
+      PageInfo<TabWithParamRouteArgs>(name);
+}
+
+class TabWithParamRouteArgs {
+  const TabWithParamRouteArgs({
+    this.key,
+    required this.param,
+  });
+
+  final Key? key;
+
+  final String param;
+
+  @override
+  String toString() {
+    return 'TabWithParamRouteArgs{key: $key, param: $param}';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TabWithParamRouteArgs &&
+            this.key == other.key &&
+            this.param == other.param);
+  }
+
+  @override
+  int get hashCode => Object.hashAll([key.hashCode, param.hashCode]);
+}
+
+/// generated route for
+/// [TabsWithParamHostPage]
+class TabsWithParamHostRoute extends PageRouteInfo<TabsWithParamHostRouteArgs> {
+  TabsWithParamHostRoute({
+    Key? key,
+    String tabsType = 'IndexedStack',
+    List<PageRouteInfo>? children,
+  }) : super(
+          TabsWithParamHostRoute.name,
+          args: TabsWithParamHostRouteArgs(
+            key: key,
+            tabsType: tabsType,
+          ),
+          rawQueryParams: {'tabsType': tabsType},
+          initialChildren: children,
+        );
+
+  static const String name = 'TabsWithParamHostRoute';
+
+  static const PageInfo<TabsWithParamHostRouteArgs> page =
+      PageInfo<TabsWithParamHostRouteArgs>(name);
+}
+
+class TabsWithParamHostRouteArgs {
+  const TabsWithParamHostRouteArgs({
+    this.key,
+    this.tabsType = 'IndexedStack',
+  });
+
+  final Key? key;
+
+  final String tabsType;
+
+  @override
+  String toString() {
+    return 'TabsWithParamHostRouteArgs{key: $key, tabsType: $tabsType}';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TabsWithParamHostRouteArgs &&
             this.key == other.key &&
             this.tabsType == other.tabsType);
   }

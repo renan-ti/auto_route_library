@@ -171,6 +171,59 @@ class TabsHostPage extends StatelessWidget {
 }
 
 @RoutePage()
+class TabWithParamPage extends TestPage {
+  final String param;
+  const TabWithParamPage({Key? key, required this.param}) : super(key: key);
+}
+
+@RoutePage()
+class TabsWithParamHostPage extends StatefulWidget {
+  final String tabsType;
+
+  const TabsWithParamHostPage(
+      {Key? key, @queryParam this.tabsType = 'IndexedStack'})
+      : super(key: key);
+
+  @override
+  State<TabsWithParamHostPage> createState() => TabsWithParamHostPageState();
+}
+
+class TabsWithParamHostPageState extends State<TabsWithParamHostPage> {
+  List<PageRouteInfo> routes = [
+    TabWithParamRoute(param: "initial"),
+  ];
+
+  void setRoutes(List<PageRouteInfo> newRoutes) {
+    setState(() {
+      routes = newRoutes;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.tabsType == 'IndexedStack') {
+      return AutoTabsRouter(
+        routes: routes,
+      );
+    }
+
+    if (widget.tabsType == 'PageView') {
+      return AutoTabsRouter.pageView(
+        routes: routes,
+      );
+    }
+
+    if (widget.tabsType == 'TabBar') {
+      return AutoTabsRouter.tabBar(
+        routes: routes,
+      );
+    }
+
+    throw 'unsupported tabs type';
+  }
+}
+
+@RoutePage()
 class DeclarativeRouterHostScreen extends StatelessWidget {
   const DeclarativeRouterHostScreen({Key? key, required this.pageNotifier})
       : super(key: key);
