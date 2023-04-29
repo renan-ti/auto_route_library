@@ -729,8 +729,8 @@ class TabsRouter extends RoutingController {
     _pages.clear();
     _childControllers.clear();
     _pushAll(routesToPush);
-    var targetIndex =
-        routesToPush.indexWhere((r) => r.name == previousActiveRoute.routeName);
+    var targetIndex = 
+        routesToPush.indexWhere((r) => r.toPageRouteInfo() == previousActiveRoute);
     if (targetIndex == -1) {
       targetIndex = homeIndex == -1 ? 0 : homeIndex;
     }

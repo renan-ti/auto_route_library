@@ -211,7 +211,7 @@ class RouteMatcher {
       stringMatch: stringMatch,
       fragment: route.fragment,
       redirectedFrom: route.redirectedFrom,
-      children: childMatches,
+      children: childMatches.isNotEmpty ? childMatches : null,
       pathParams: Parameters(route.rawPathParams),
       queryParams: Parameters(route.rawQueryParams),
     );
